@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LifeLog</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="sharedPref_notes">my-notes</string>
+    <string name="addNote_saveButtonText">Commit</string>
+    <string name="addNote_contentFieldHint">Description</string>
+    <string name="addNote_titleFieldHint">Title</string>
+</resources>
