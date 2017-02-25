@@ -21,8 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--<include layout="@layout/content_main" />-->
-
     <fragment
         android:id="@+id/main_noteFragment"
         android:name="maxinertia.lifelog.note.NoteFragment"

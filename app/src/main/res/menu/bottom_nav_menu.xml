@@ -4,19 +4,19 @@
     <item
         android:id="@+id/bottomNavMenu_notes"
         android:enabled="true"
-        android:title="Notes"
-        android:icon="@android:drawable/ic_menu_add"
+        android:title="What"
+        android:icon="@mipmap/ic_book_black"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/bottomNavMenu_people"
         android:enabled="true"
-        android:title="People"
-        android:icon="@android:drawable/ic_menu_add"
+        android:title="Who"
+        android:icon="@mipmap/ic_person_black"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/bottomNavMenu_log"
         android:enabled="false"
-        android:title="Info"
-        android:icon="@android:drawable/ic_menu_add"
+        android:title="Where"
+        android:icon="@mipmap/ic_compass_black"
         app:showAsAction="ifRoom" />
 </menu>
