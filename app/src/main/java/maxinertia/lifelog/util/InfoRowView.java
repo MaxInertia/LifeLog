@@ -7,9 +7,8 @@ import android.widget.TextView;
 import maxinertia.lifelog.R;
 
 /**
- * Created by Doria on 2017-02-24.
+ *
  */
-
 public class InfoRowView {
 
     public static void setupView(Activity context, int resource, String keyString, String valueString) {
@@ -18,7 +17,5 @@ public class InfoRowView {
         TextView value = (TextView) linLayout.findViewById(R.id.info_value);
         key.setText(keyString);
         value.setText(valueString);
-
-        //TextView.Layout lParams = key.getLayoutParams().
     }
 }

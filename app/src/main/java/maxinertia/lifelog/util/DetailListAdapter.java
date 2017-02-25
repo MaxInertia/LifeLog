@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.util.LinkedList;
 
 import maxinertia.lifelog.R;
-import maxinertia.lifelog.data.Note;
 import maxinertia.lifelog.data.SubNote;
 
 /**

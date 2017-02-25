@@ -51,8 +51,9 @@ public class Person implements Parcelable {
         return name;
     }
 
-    public int getAge() {
-        return age;
+    public String getAge() {
+        if(age==-1) return "Unknown Age";
+        return ""+age;
     }
 
     public String getAddress() {
