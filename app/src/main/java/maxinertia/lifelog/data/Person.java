@@ -55,6 +55,14 @@ public class Person implements Parcelable {
         return age;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
     public String getID() {
         return ""+dateAdded.getTime();
     }

@@ -28,8 +28,7 @@ public class DetailedNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detailed_note);
 
         int index = getIntent().getExtras().getInt("position");
-        final Note note = (Note) Data.getNotes().get(index);
-        //final Note note = getIntent().getExtras().getParcelable("note-clicked");
+        final Note note = Data.getNotes().get(index);
 
         verifyNote(note);
         setupTextViews(note);
@@ -84,10 +83,6 @@ public class DetailedNoteActivity extends AppCompatActivity {
                 Storage.updateNote(getBaseContext(),note);
 
                 ListView subNoteList = (ListView) findViewById(R.id.detailedNote_listView);
-                //subNoteList.getAdapter().notifyDataSetChanged();
-                //subNoteList.deferNotifyDataSetChanged();
-                //subNoteList.invalidate();
-                //subNoteList.refreshDrawableState();
                 subNoteList.invalidateViews();
                 View view = DetailedNoteActivity.this.getCurrentFocus();
                 if (view != null) {
