@@ -3,7 +3,9 @@ package maxinertia.lifelog.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 
 /**
  *
@@ -16,6 +18,8 @@ public class Person implements Parcelable {
     String address;
     String otherContent;
 
+    LinkedList<SubNote> notes;
+
     Date dateAdded;
 
     public Person(String name, int age, String dob, String address, String otherContent, Date dateAdded) {
@@ -25,6 +29,7 @@ public class Person implements Parcelable {
         this.address = address;
         this.otherContent = otherContent;
         this.dateAdded = dateAdded;
+        notes = new LinkedList<>();
     }
 
     protected Person(Parcel in) {
@@ -62,6 +67,15 @@ public class Person implements Parcelable {
 
     public String getDateOfBirth() {
         return dateOfBirth;
+    }
+
+    public LinkedList<SubNote> getNotes() {
+        return notes;
+    }
+
+    public void addNote(String noteContent) {
+        if(notes==null) notes = new LinkedList<>();
+        notes.add(new SubNote(noteContent));
     }
 
     public String getID() {
