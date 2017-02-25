@@ -4,13 +4,29 @@
     android:id="@+id/activity_add_note"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activityBackground">
+    android:background="@color/activityBackground"
+    tools:context="maxinertia.lifelog.note.AddNoteActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        tools:context="maxinertia.lifelog.AddNoteActivity">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Dummy item to prevent AutoCompleteTextView from receiving focus -->
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px"/>
+
+        <!-- :nextFocusUp and :nextFocusLeft have been set to the id of this component
+        to prevent the dummy from receiving focus again -->
+        <AutoCompleteTextView android:id="@+id/autotext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:nextFocusUp="@id/autotext"
+            android:nextFocusLeft="@id/autotext"
+            android:background="@android:color/transparent"/>
 
         <LinearLayout
             android:background="@drawable/border"
@@ -18,7 +34,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:id="@+id/addNote_fieldLayout">
+            android:id="@+id/addNote_fieldLayout"
+            android:focusableInTouchMode="true">
 
             <EditText
                 android:background="@android:color/transparent"

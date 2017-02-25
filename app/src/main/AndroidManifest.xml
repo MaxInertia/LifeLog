@@ -10,25 +10,34 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:label="Life Log"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".AddNoteActivity"
+        <activity
+            android:name=".note.AddNoteActivity"
             android:label="New Note"
             android:parentActivityName=".MainActivity" />
-
-        <activity android:name=".DetailedNoteActivity"
+        <activity
+            android:name=".note.DetailedNoteActivity"
             android:label="Detailed Note View"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustPan|adjustResize"/>
-
+            android:windowSoftInputMode="adjustPan|adjustResize" />
+        <activity
+            android:name=".people.AddPersonActivity"
+            android:label="New Person"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".people.DetailedPersonActivity"
+            android:label="Detailed Person View"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
     </application>
 
 </manifest>

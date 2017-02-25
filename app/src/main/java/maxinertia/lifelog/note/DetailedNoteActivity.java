@@ -1,4 +1,4 @@
-package maxinertia.lifelog;
+package maxinertia.lifelog.note;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,12 +13,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import maxinertia.lifelog.R;
 import maxinertia.lifelog.data.Data;
 import maxinertia.lifelog.data.Note;
 import maxinertia.lifelog.data.Storage;
 import maxinertia.lifelog.data.SubNote;
 import maxinertia.lifelog.util.DetailListAdapter;
-import maxinertia.lifelog.util.ListAdapter;
 
 public class DetailedNoteActivity extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class DetailedNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detailed_note);
 
         int index = getIntent().getExtras().getInt("position");
-        final Note note = Data.getNotes().get(index);
+        final Note note = (Note) Data.getNotes().get(index);
         //final Note note = getIntent().getExtras().getParcelable("note-clicked");
 
         verifyNote(note);

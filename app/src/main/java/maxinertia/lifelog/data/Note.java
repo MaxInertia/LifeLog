@@ -67,6 +67,10 @@ public class Note implements Comparable<Note>, Parcelable {
         return formatDateToReadable(submissionDate,true);
     }
 
+    public String getID() {
+        return ""+submissionDate.getTime();
+    }
+
     public LinkedList<SubNote> getSubNotes() {
         if(subNotes== null) subNotes = new LinkedList<>();
         return subNotes;

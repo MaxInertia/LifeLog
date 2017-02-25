@@ -21,14 +21,32 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <!--<include layout="@layout/content_main" />-->
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <fragment
+        android:id="@+id/main_noteFragment"
+        android:name="maxinertia.lifelog.note.NoteFragment"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="?attr/actionBarSize"/>
+
+    <fragment
+        android:id="@+id/main_peopleFragment"
+        android:name="maxinertia.lifelog.people.PeopleFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="?attr/actionBarSize"/>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_action_name" />
+        app:menu="@menu/bottom_nav_menu"
+        app:itemBackground="@android:color/black"
+        app:itemIconTint="@color/nav_icon_color_state"
+        app:itemTextColor="@color/nav_text_color_state"/>
 
 </android.support.design.widget.CoordinatorLayout>

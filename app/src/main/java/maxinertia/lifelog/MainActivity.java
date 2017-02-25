@@ -2,22 +2,23 @@ package maxinertia.lifelog;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import maxinertia.lifelog.data.Data;
-import maxinertia.lifelog.data.Note;
 import maxinertia.lifelog.data.Storage;
-import maxinertia.lifelog.util.ListAdapter;
+import maxinertia.lifelog.note.AddNoteActivity;
+import maxinertia.lifelog.people.AddPersonActivity;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static int selectedBotNavItemID = R.id.bottomNavMenu_notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,47 +27,62 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
-                MainActivity.this.startActivity(intent);
-            }
-        });
+        Storage.loadData(getBaseContext());
+        setupNavigationView();
+    }
 
-        if(Data.noteCount()==0) {
-            int loadedNoteCount = Storage.loadNotes(getBaseContext());
-            Toast.makeText(getBaseContext(),"Loaded notes: "+loadedNoteCount, Toast.LENGTH_LONG).show();
+    public void setupNavigationView() {
+        final BottomNavigationView mBottomNav = (BottomNavigationView) findViewById(R.id.bottomNavigationBar);
+
+        mBottomNav.findViewById(selectedBotNavItemID).performClick();
+        switch(selectedBotNavItemID) {
+            case R.id.bottomNavMenu_notes:
+                findViewById(R.id.main_noteFragment).setVisibility(View.VISIBLE);
+                findViewById(R.id.main_peopleFragment).setVisibility(View.INVISIBLE);
+                break;
+            case R.id.bottomNavMenu_people:
+                findViewById(R.id.main_noteFragment).setVisibility(View.INVISIBLE);
+                findViewById(R.id.main_peopleFragment).setVisibility(View.VISIBLE);
+                break;
         }
 
+        mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()) {
+                    case R.id.bottomNavMenu_notes:
+                        if(selectedBotNavItemID == item.getItemId()) {
+                            Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
+                            MainActivity.this.startActivity(intent);
+                        } else {
+                            findViewById(R.id.main_peopleFragment).setVisibility(View.INVISIBLE);
+                            findViewById(R.id.main_noteFragment).setVisibility(View.VISIBLE);
+                            selectedBotNavItemID = item.getItemId();
+                            Toast.makeText(getBaseContext(), ""+Data.getNotes().size(), Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case R.id.bottomNavMenu_people:
+                        if(selectedBotNavItemID == item.getItemId()) {
+                            Intent intent = new Intent(MainActivity.this, AddPersonActivity.class);
+                            MainActivity.this.startActivity(intent);
+                        } else {
+                            findViewById(R.id.main_peopleFragment).setVisibility(View.VISIBLE);
+                            findViewById(R.id.main_noteFragment).setVisibility(View.INVISIBLE);
+                            selectedBotNavItemID = item.getItemId();
+                            Toast.makeText(getBaseContext(),""+Data.getPeople().size(), Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case R.id.bottomNavMenu_log:
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        ListAdapter adapter = new ListAdapter(
-                this,
-                R.layout.note_list_item,
-                Data.getNotes()
-        );
-        ListView noteList = (ListView) findViewById(R.id.main_listView);
-        noteList.setAdapter(adapter);
-        noteList.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Note noteClicked = (Note) parent.getItemAtPosition(position);
-                        Intent intent = new Intent(MainActivity.this, DetailedNoteActivity.class);
-                        intent.putExtra("note-clicked",noteClicked);
-                        intent.putExtra("position",position);
-                        MainActivity.this.startActivity(intent);
-                    }
-                }
-        );
-
-
     }
 
     @Override
@@ -90,4 +106,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

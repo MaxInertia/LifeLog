@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/bottomNavMenu_notes"
+        android:enabled="true"
+        android:title="Notes"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bottomNavMenu_people"
+        android:enabled="true"
+        android:title="People"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bottomNavMenu_log"
+        android:enabled="false"
+        android:title="Info"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="ifRoom" />
+</menu>

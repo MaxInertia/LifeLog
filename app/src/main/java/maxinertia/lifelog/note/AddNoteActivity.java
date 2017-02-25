@@ -1,4 +1,4 @@
-package maxinertia.lifelog;
+package maxinertia.lifelog.note;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import maxinertia.lifelog.R;
 import maxinertia.lifelog.data.Note;
 import maxinertia.lifelog.data.Storage;
 

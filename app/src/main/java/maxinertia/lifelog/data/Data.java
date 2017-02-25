@@ -9,16 +9,13 @@ import java.util.LinkedList;
  */
 public class Data {
     static final LinkedList<Note> notes = new LinkedList<>();
-
-    public static int noteCount() {
-        return notes.size();
-    }
+    static final LinkedList<Person> people = new LinkedList<>();
 
     public static LinkedList<Note> getNotes() {
         return notes;
     }
 
-    private void sortNotesByDate() {
-        Collections.sort(notes);
+    public static LinkedList<Person> getPeople() {
+        return people;
     }
 }

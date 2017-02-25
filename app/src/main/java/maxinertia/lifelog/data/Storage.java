@@ -16,6 +16,7 @@ import java.util.Map;
 
 import maxinertia.lifelog.R;
 
+import static android.content.Context.MODE_PRIVATE;
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 /**
@@ -23,37 +24,27 @@ import static android.preference.PreferenceManager.getDefaultSharedPreferences;
  */
 public class Storage {
 
-
-    static final String FILE_NAME = "nt";
-    static final String FILE_EXT = ".dt";
+    private final static String peopleListConstant = "People";
+    private final static String notesListConstant = "Notes";
 
     public static void saveNote(Context context, Note note) {
         Data.notes.addFirst(note);
-
-        Gson gson = new Gson();
-        String note_json = gson.toJson(note);
-
-        String id = ""+ note.getReadableDate();
-        SharedPreferences sharedPreferences = getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(id,note_json);
-        editor.apply();
+        updateNote(context, note);
     }
 
     public static void updateNote(Context context, Note note) {
         Gson gson = new Gson();
-        String note_json = gson.toJson(note);
+        String json = gson.toJson(note);
 
-        String id = ""+ note.getReadableDate();
-        SharedPreferences sharedPreferences = getDefaultSharedPreferences(context);
+        String id = note.getID();
+        SharedPreferences sharedPreferences = context.getSharedPreferences(notesListConstant, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(id,note_json);
+        editor.putString(id,json);
         editor.apply();
     }
 
     public static int loadNotes(Context context) {
-        SharedPreferences sharedPreferences = getDefaultSharedPreferences(context);
-
+        SharedPreferences sharedPreferences = context.getSharedPreferences(notesListConstant, MODE_PRIVATE);
         Collection json_note_collection = sharedPreferences.getAll().values();
         Gson gson = new Gson();
 
@@ -66,6 +57,42 @@ public class Storage {
         }
         Collections.sort(Data.notes);
         return loadedNoteCount;
+    }
+
+    public static void savePerson(Context context, Person person) {
+        Data.people.addFirst(person);
+        updatePerson(context, person);
+    }
+
+    public static void updatePerson(Context context, Person person) {
+        Gson gson = new Gson();
+        String json = gson.toJson(person);
+
+        String id = person.getID();
+        SharedPreferences sharedPreferences = context.getSharedPreferences(peopleListConstant, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(id,json);
+        editor.apply();
+    }
+
+    public static int loadPeople(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(peopleListConstant, MODE_PRIVATE);
+        Collection json_person_collection = sharedPreferences.getAll().values();
+        Gson gson = new Gson();
+
+        int loadedNoteCount = 0;
+        for(Object object: json_person_collection) {
+            String json_note = (String) object;
+            Person person = gson.fromJson(json_note, Person.class);
+            Data.people.add(person);
+            loadedNoteCount++;
+        }
+        return loadedNoteCount;
+    }
+
+    public static void loadData(Context context) {
+        if(Data.notes.size()==0) loadNotes(context);
+        if(Data.people.size()==0) loadPeople(context);
     }
 
     /* Checks if external storage is available for read and write */
