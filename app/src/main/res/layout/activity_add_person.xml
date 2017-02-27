@@ -9,9 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        tools:context="maxinertia.lifelog.note.AddNoteActivity">
+        android:orientation="vertical">
 
         <TextView
             android:textColor="@android:color/holo_blue_dark"
@@ -33,67 +31,25 @@
             android:layout_below="@id/addPerson_time"
             android:id="@+id/addPerson_saveButton" />
 
+        <TextView
+            android:id="@+id/addPerson_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:paddingTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:textSize="18sp"
+            android:text="Basic Details"/>
+
         <LinearLayout
             android:background="@drawable/border"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
             android:id="@+id/addPerson_fieldLayout"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true">
-
-            <EditText
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="Name"
-                android:textSize="24sp"
-                android:ems="10"
-                android:paddingBottom="16dp"
-                android:id="@+id/addPerson_nameField" />
-
-            <View
-                android:background="@android:color/darker_gray"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
-
-            <EditText
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="date"
-                android:hint="Date of Birth"
-                android:textSize="20sp"
-                android:ems="10"
-                android:paddingTop="16dp"
-                android:id="@+id/addPerson_dateOfBirthField" />
-
-
-            <EditText
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLength="7"
-                android:hint="Age"
-                android:textSize="20sp"
-                android:ems="10"
-                android:paddingTop="16dp"
-                android:id="@+id/addPerson_ageField" />
-
-            <EditText
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPostalAddress"
-                android:hint="Address"
-                android:textSize="20sp"
-                android:ems="10"
-                android:paddingTop="16dp"
-                android:id="@+id/addPerson_addressField" />
-        </LinearLayout>
+            android:layout_below="@id/addPerson_title"
+            android:layout_alignParentStart="true"/>
 
     </RelativeLayout>
 </ScrollView>

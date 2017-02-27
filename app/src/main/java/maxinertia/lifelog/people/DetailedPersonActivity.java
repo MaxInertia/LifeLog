@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import maxinertia.lifelog.GUI_Utility;
 import maxinertia.lifelog.R;
 import maxinertia.lifelog.data.Data;
 import maxinertia.lifelog.data.Person;
@@ -35,10 +36,19 @@ public class DetailedPersonActivity extends AppCompatActivity {
     }
 
     private void setupTextViews(final Person person) {
-        InfoRowView.setupView(DetailedPersonActivity.this, R.id.detailedPerson_name, "Name:", person.getName());
-        InfoRowView.setupView(DetailedPersonActivity.this, R.id.detailedPerson_age, "Age:", ""+person.getAge());
-        InfoRowView.setupView(DetailedPersonActivity.this, R.id.detailedPerson_dateOfBirth, "Date of Birth:", person.getDateOfBirth());
-        InfoRowView.setupView(DetailedPersonActivity.this, R.id.detailedPerson_address, "Address:", person.getAddress());
+        GUI_Utility.insertDisplayField(this, R.id.detailedPerson_fieldLayout, "Name:", person.getName());
+        if(!person.getAge().equals("")) {
+            GUI_Utility.insertDivider(this,R.id.detailedPerson_fieldLayout);
+            GUI_Utility.insertDisplayField(this, R.id.detailedPerson_fieldLayout, "Age:", ""+person.getAge());
+        }
+        if(!person.getDateOfBirth().equals("")) {
+            GUI_Utility.insertDivider(this, R.id.detailedPerson_fieldLayout);
+            GUI_Utility.insertDisplayField(this, R.id.detailedPerson_fieldLayout, "Date of Birth:", person.getDateOfBirth());
+        }
+        if(!person.getAddress().equals("")) {
+            GUI_Utility.insertDivider(this, R.id.detailedPerson_fieldLayout);
+            GUI_Utility.insertDisplayField(this, R.id.detailedPerson_fieldLayout, "Address:", person.getAddress());
+        }
     }
 
     private void setupListView(final Person person) {
